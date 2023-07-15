@@ -5,5 +5,5 @@
 .terraform.tfstate.lock.info
 .terraform.
 .terraform.tfstate.backup
-.var.tf
+/var.tf
 ./var.tf
