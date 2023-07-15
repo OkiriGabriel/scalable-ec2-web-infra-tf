@@ -1,0 +1,48 @@
+
+
+1. # Setting up safe connectivity between RDS and EC2 instances:
+You need to carefully configure the security groups in order to provide secure
+connection between the EC2 instances and the RDS instance.
+The security group for the RDS instance in the provided sample Terraform script permits inbound traffic from the security group of the EC2 instances on the MySQL port (3306).
+This enables safe communication between the RDS instance and the EC2 instances.
+
+2. Managing auto-scaling: Setting up and managing auto-scaling can be challenging.
+An auto-scaling group is created in the Terraform script with the target capacity set to 2 instances and a minimum of 1. 
+You can change the maximum capacity to suit your needs.
+Additionally, you can set up scaling strategies to automatically change the number of instances based on indicators like 
+network traffic or CPU utilization.
+
+3. Selecting the proper instance types: Based on the demands of your application, 
+select the proper EC2 instance type and RDS instance type. 
+The EC2 and RDS instances are used by the example Terraform script as t2.micro and db.t2.micro, respectively. 
+These are inexpensive and appropriate for use in small-scale applications. The performance, storage,
+and memory needs of your application should be taken into consideration while choosing an instance type.
+
+4. Dealing with data persistence: 
+In the example given, the RDS instance is set up with 20 GB of allotted storage using the "gp2" storage type.
+The storage capacity can be changed to suit your needs. Additionally, for increased availability and data durability,
+you should think about setting automated backups and Multi-AZ deployment.
+
+
+Explanation for design and technology choices:
+
+1. Auto scaling and load balancing: 
+These techniques make sure that your application can cope with variable traffic volumes. 
+You can keep up with demand by automatically scaling the number of EC2 instances to maintain performance and availability. 
+Incoming traffic is split across the instances by the load balancer, which keeps any one instance from getting overloaded.
+
+2. EC2 instances, a load balancer, and an RDS instance's inbound and outbound traffic are all managed by security groups.
+You can assure safe resource connectivity and limit access to particular ports and IP ranges by appropriately creating security groups.
+
+3. Separate Security Groups are generated for EC2 and RDS Instances: 
+Separate security groups are generated for the EC2 instances and the RDS instance in the example Terraform script. 
+Only traffic from reliable sources is permitted inbound thanks to this segregation,
+which also provides for fine-grained control over the security requirements.
+
+4. Terraform as Infrastructure-as-Code: Because Terraform enables you to describe and manage your infrastructure as code, 
+it was chosen as the technology for infrastructure provisioning. 
+Terraform's declarative design makes it simple to version control and modify your infrastructure.
+
+
+
+
